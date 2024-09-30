@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="StateContainersDemo.Views.LoginPage"
+             Title="LoginPage">
+    <VerticalStackLayout 
+        Padding="20"
+        VerticalOptions="Center"
+        toolkit:StateContainer.CurrentState="{Binding CurrentState}"
+        toolkit:StateContainer.CanStateChange="{Binding CanStateChange}">
+
+        <toolkit:StateContainer.StateViews>
+            <VerticalStackLayout toolkit:StateView.StateKey="Loading">
+                <ActivityIndicator IsRunning="True" />
+                <Label Text="Iniciando sesión..." HorizontalOptions="Center" />
+            </VerticalStackLayout>
+            <Label toolkit:StateView.StateKey="Success" 
+                   Text="¡Login successfull!" 
+                   HorizontalOptions="Center" />
+        </toolkit:StateContainer.StateViews>
+
+        <Entry Placeholder="Username" Text="{Binding Username}" />
+        <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password}" />
+        <Button Text="Login" 
+                Command="{Binding LoginCommand}"
+                IsEnabled="{Binding CanStateChange}" />
+
+    </VerticalStackLayout>
+</ContentPage>
