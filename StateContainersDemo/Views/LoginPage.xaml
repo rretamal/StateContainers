@@ -11,20 +11,25 @@
         toolkit:StateContainer.CanStateChange="{Binding CanStateChange}">
 
         <toolkit:StateContainer.StateViews>
+            <VerticalStackLayout toolkit:StateView.StateKey="Default">
+                <Label Text="Please enter your login details" 
+                       HorizontalOptions="Center" />
+
+                <Entry Placeholder="Username" Text="{Binding Username}" />
+                <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password}" />
+                <Button Text="Login" 
+                   Command="{Binding LoginCommand}"
+                   IsEnabled="{Binding CanStateChange}" />
+            </VerticalStackLayout>
+
             <VerticalStackLayout toolkit:StateView.StateKey="Loading">
                 <ActivityIndicator IsRunning="True" />
-                <Label Text="Iniciando sesión..." HorizontalOptions="Center" />
+                <Label Text="Logging in..." HorizontalOptions="Center" />
             </VerticalStackLayout>
+
             <Label toolkit:StateView.StateKey="Success" 
-                   Text="¡Login successfull!" 
+                   Text="Login successful!" 
                    HorizontalOptions="Center" />
         </toolkit:StateContainer.StateViews>
-
-        <Entry Placeholder="Username" Text="{Binding Username}" />
-        <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password}" />
-        <Button Text="Login" 
-                Command="{Binding LoginCommand}"
-                IsEnabled="{Binding CanStateChange}" />
-
     </VerticalStackLayout>
 </ContentPage>

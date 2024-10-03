@@ -74,6 +74,8 @@ namespace StateContainersDemo.ViewModels
 
         public LoginViewModel()
         {
+            CurrentState = "Default";
+
             // Initialize the command with a method that determines CanExecute
             LoginCommand = new Command(async () => await LoginAsync(), () => CanStateChange);
         }
